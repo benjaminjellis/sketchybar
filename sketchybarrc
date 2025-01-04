@@ -1,13 +1,5 @@
 #!/bin/bash
 
-#                      _ _
-#                     (_) |
-#  _ __ _____   ___ __ _| |_ ____           github:     https://github.com/mvritz
-# | '_ ` _ \ \ / / '__| | __|_  /           twitter:    https://twitter.com/meshtonight
-# | | | | | \ V /| |  | | |_ / /            website:    https://moriware.com
-# |_| |_| |_|\_/ |_|  |_|\__/___|
-#
-
 source "$HOME/.config/sketchybar/colors.sh"
 source "$HOME/.config/sketchybar/icons.sh"
 source "$HOME/.config/sketchybar/environment.sh"
