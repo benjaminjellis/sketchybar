@@ -3,11 +3,24 @@
 source "$HOME/.config/sketchybar/colors.sh"
 source "$HOME/.config/sketchybar/icons.sh"
 
-CURRENT_SONG=$(osascript -e 'tell application "Spotify" to return name of current track')
-CURRENT_ARTIST=$(osascript -e 'tell application "Spotify" to return artist of current track')
-CURRENT_ALBUM=$(osascript -e 'tell application "Spotify" to return album of current track')
-CURRENT_COVER=$(osascript -e 'tell application "Spotify" to return artwork url of current track')
-WIDTH=$(((${#CURRENT_SONG} * 10) + 10))
+RUNNING=$(osascript -e 'if application "Spotify" is running then return 0')
+if [ "$RUNNING" == "" ]; then
+  RUNNING=1
+fi
+
+if [ $RUNNING -eq 0 ] then 
+  CURRENT_SONG=$(osascript -e 'if application "Spotify" is running then tell application "Spotify" to return name of current track')
+  CURRENT_ARTIST=$(osascript -e 'if application "Spotify" is running then tell application "Spotify" to return artist of current track')
+  CURRENT_ALBUM=$(osascript -e 'if application "Spotify" is running then tell application "Spotify" to return album of current track')
+  CURRENT_COVER=$(osascript -e 'if application "Spotify" is running then tell application "Spotify" to return artwork url of current track')
+  WIDTH=$(((${#CURRENT_SONG} * 10) + 10))
+else 
+  CURRENT_SONG=""
+  CURRENT_ARTIST=""
+  CURRENT_ALBUM=""
+  CURRENT_COVER=""
+  WIDTH=0
+fi
 
 curl -s --max-time 20 "$CURRENT_COVER" -o /tmp/cover.jpg
 
